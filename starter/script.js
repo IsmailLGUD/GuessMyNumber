@@ -15,7 +15,7 @@
 //Real game start
 let secretNumber = Math.trunc(Math.random() * 20) + 1;
 let score = 20;
-let highcore = 0;
+let highScore = 0;
 
 
 document.querySelector('.check').addEventListener('click', function () {
@@ -35,24 +35,33 @@ document.querySelector('.check').addEventListener('click', function () {
 
     document.querySelector('.number').style.width = '30rem';
 
-    if (score > highcore) {
-      highcore = score;
-      document.querySelector('.highscore').textContent = highscore;
+    if (score > highScore) {
+      highScore = score;
+      document.querySelector('.highscore').textContent = highScore;
     }
-  } else if (guess > secretNumber) {
+
+    //When gues is wrong
+  }else if(guess!==secretNumber) {
+
     if (score > 0) {
-      document.querySelector('.message').textContent = 'Too High!!!';
+      document.querySelector('.message').textContent = guess>secretNumber ? 'Too High!!!': "Too Low!!!";
       score--;
       document.querySelector('.score').textContent = score;
-    } else {
-      document.querySelector('.message').textContent = 'You lost the game!';
-      document.querySelector('.score').textContent = 0;
-    }
-  } else if (guess !== secretNumber) {
-    if (score > 1) {
-      document.querySelector('.message').textContent = 'Too Low!!!';
-      score--;
-      document.querySelector('.score').textContent = score;
+
+  // } else if (guess > secretNumber) {
+  //   if (score > 0) {
+  //     document.querySelector('.message').textContent = 'Too High!!!';
+  //     score--;
+  //     document.querySelector('.score').textContent = score;
+  //   } else {
+  //     document.querySelector('.message').textContent = 'You lost the game!';
+  //     document.querySelector('.score').textContent = 0;
+  //   }
+  // } else if (guess !== secretNumber) {
+  //   if (score > 1) {
+  //     document.querySelector('.message').textContent = 'Too Low!!!';
+  //     score--;
+  //     document.querySelector('.score').textContent = score;
     } else {
       document.querySelector('.message').textContent = 'You lost the game!';
       document.querySelector('.score').textContent = 0;
